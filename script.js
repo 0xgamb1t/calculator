@@ -2,67 +2,66 @@ console.log("I'm Alive!")
 
 const calculator = document.querySelector('.calculator')
 
-let calcNumbers = ['00', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-let calcButtons = ['reset', 'delete',]
+let calcNumbers = ['dot', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+let calcMiscButtons = ['reset', 'delete', 'equal']
 let calcFunctions = ['add', 'subtract', 'divide', 'multiply', 'square', 'exponent']
-let calcScreens = ['mainScreen', 'secondaryScreen']
+let calcScreens = ['main-screen', 'secondary-screen']
 
-function createDivs(divList) {
+function createDivs(divList, classesToAdd) {
     divList.forEach(element => {    
         const div = document.createElement('div')
         calculator.append(div)
-        screen.textContent = element
-    })
-}
+        div.textContent = element
 
-createDivs(calcScreens,)
+        div.classList.add(...classesToAdd)
+    })
+
+}
 
 
 function createScreen() {
-    
-    // screen.style.gridColumn = 'span 4'   
-}
+    createDivs(calcScreens, ['screen'])
+    const screenElement = document.querySelectorAll('.screen')
+    screenElement.forEach(element => {
+        element.id = `${element.textContent}`
+        element.textContent = '0'
+    })
 
+}
 createScreen();
 
 function createNumbers() {
+    createDivs(calcNumbers, ['button', 'number'])
+    const numbersElement = document.querySelectorAll('.number')
 
-    calcNumbers.forEach(element => {
-        const button = document.createElement('div');
-        calculator.appendChild(button);
-        button.textContent = element
-        button.classList.add('button', 'number', `n${button.textContent}`)
-        // button.style.gridArea = `n${button.textContent}` >> this is dumb, refers to grid-area n / n / n / n
-    });
+    numbersElement.forEach(element => {
+        element.id = `n${element.textContent}`
+    })
 }
-
 createNumbers();
 
-function createCalcButtons() {
-    calcButtons.forEach(element => {
-        const button = document.createElement('div');
-        calculator.append(button);
-        button.textContent = element
-        button.classList.add('button', `${button.textContent}`)
+
+function createFunctions() {
+    createDivs(calcFunctions, ['button', 'function'])
+    const functionsElement = document.querySelectorAll('.function')
+
+    functionsElement.forEach(element => {
+        element.id = `${element.textContent.substring(0, 3)}`
+        // element.style.gridArea = 'name' >> want to find a js solution for this
+    })
+}
+createFunctions();
+
+
+function createMiscButtons() {
+    createDivs(calcMiscButtons, ['button', 'misc-button'])
+
+    const miscButtonsElement = document.querySelectorAll('.misc-button')
+    miscButtonsElement.forEach(element => {
+        element.id = `${element.textContent}`
     })
 
 
 }
-
-createCalcButtons();
-
-
-function createCalcFunctions() {
-    calcFunctions.forEach(element => {
-        const button = document.createElement('div');
-        calculator.append(button);
-        button.textContent = element
-        button.classList.add('button', 'function', `${button.textContent}`)
-        
-    })
-
-
-}
-
-createCalcFunctions();
+createMiscButtons();
 

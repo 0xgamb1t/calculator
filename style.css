@@ -1,19 +1,117 @@
+
+
 .calculator {
     width: 500px;
     hight: 800px;
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(8, 1fr);
     grid-template-areas: 
         ". . . ."
-        ". . . ."
-        ". . . ."
-        "seven eight nine ."
-        "four five six ."
-        "one blue three ."
-        ". . one .";
+        "sc sc sc sc"
+        "ms ms ms ms"
+        "re sq ex di"
+        "n7 n8 n9 mu"
+        "n4 n5 n6 su"
+        "n1 n2 n3 ad"
+        "ndot n0 de eq";
 }
 
 .button {
     height: 90px;
+}
+
+/* screens */
+.screen {
+    background-color: slategrey;
+}
+
+#main-screen {
+    grid-area: ms;
+}
+#secondary-screen {
+    grid-area: sc;
+    ;
+}
+
+
+
+/* functions */
+.function {
+    background-color: steelblue;
+}
+
+#add{
+    grid-area: ad;
+}
+#sub{
+    grid-area: su;
+}
+#div{
+    grid-area: di;
+}
+#mul{
+    grid-area: mu;
+}
+#squ{
+    grid-area: sq;
+}
+#exp{
+    grid-area: ex;
+}
+
+/* misc buttons */
+.misc-button{
+    background-color: rgb(195, 195, 195);
+}
+
+#equal{
+    grid-area: eq;
+}
+#delete{
+    grid-area: de;
+}
+#reset{
+    grid-area: re;
+}
+
+
+/* numbers */
+.number{
+    background-color: red;
+}
+
+#ndot {
+    grid-area: ndot;
+}
+#n0 {
+    grid-area: n0;
+}
+#n1 {
+    grid-area: n1;
+}
+#n2 {
+    grid-area: n2;
+}
+#n3 {
+    grid-area: n3;
+}
+#n4 {
+    grid-area: n4;
+}
+#n5 {
+    grid-area: n5;
+}
+#n6 {
+    grid-area: n6;
+}
+#n7 {
+    grid-area: n7;
+}
+#n8 {
+    grid-area: n8;
+}
+#n9 {
+    grid-area: n9;
 }
