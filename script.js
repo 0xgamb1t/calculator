@@ -1,5 +1,8 @@
 console.log("I'm Alive!")
 
+let firstNumber = '';
+let secondNumber;
+
 const calculator = document.querySelector('.calculator')
 
 let calcNumbers = ['dot', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -33,12 +36,23 @@ createScreen();
 function createNumbers() {
     createDivs(calcNumbers, ['button', 'number'])
     const numbersElement = document.querySelectorAll('.number')
+    const mainScreen = document.querySelector('#main-screen')
+
 
     numbersElement.forEach(element => {
         element.id = `n${element.textContent}`
+        element.addEventListener('click', () => {
+            console.log(`you clicked ${element.id}`)
+            firstNumber += element.textContent 
+            console.log(firstNumber)
+            mainScreen.textContent = firstNumber
+            console.log(mainScreen)
+        })
     })
 }
+
 createNumbers();
+
 
 
 function createFunctions() {
@@ -65,3 +79,7 @@ function createMiscButtons() {
 }
 createMiscButtons();
 
+
+function resetCalculator (){
+    
+}
