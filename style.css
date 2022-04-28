@@ -1,0 +1,19 @@
+.calculator {
+    width: 500px;
+    hight: 800px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: 
+        ". . . ."
+        ". . . ."
+        ". . . ."
+        "seven eight nine ."
+        "four five six ."
+        "one blue three ."
+        ". . one .";
+}
+
+.button {
+    height: 90px;
+}
