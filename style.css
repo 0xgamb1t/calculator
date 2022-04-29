@@ -51,19 +51,19 @@
 #add{
     grid-area: ad;
 }
-#sub{
+#subtract{
     grid-area: su;
 }
-#div{
+#divide{
     grid-area: di;
 }
-#mul{
+#multiply{
     grid-area: mu;
 }
-#squ{
+#square{
     grid-area: sq;
 }
-#exp{
+#exponent{
     grid-area: ex;
 }
 

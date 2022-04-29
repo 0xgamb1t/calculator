@@ -2,7 +2,7 @@ console.log("I'm Alive!")
 
 let mainNumber = '';
 let secondaryNumber = '';
-let currentOperator;
+let currentOperator = '';
 
 const calculator = document.querySelector('.calculator')
 
@@ -30,10 +30,8 @@ function createScreen() {
         element.id = `${element.textContent}`
         element.textContent = ''
     })
-
-    
-
 }
+
 createScreen();
 
 function createNumbers() {
@@ -63,7 +61,7 @@ function createFunctions() {
     const functionsElement = document.querySelectorAll('.function')
 
     functionsElement.forEach(element => {
-        element.id = `${element.textContent.substring(0, 3)}`
+        element.id = `${element.textContent}`
         // element.style.gridArea = 'name' >> want to find a js solution for this
     })
 }
@@ -121,5 +119,50 @@ createMiscButtons();
 // operate();
 
 
-equalsBtn = document.querySelector('.equals')
+equalsBtn = document.querySelector('#equal')
+equalsBtn.addEventListener('click', () => {
+    output = `${mainNumber} ${currentOperator} ${secondaryNumber}`
+    console.log(output)
+})
+
+
+
+functionBtns = document.querySelectorAll('.function')
+functionBtns.forEach((element) => {
+    element.addEventListener('click', () => {
+        idName = element.id
+        switch (idName) {
+            case 'add':
+                currentOperator = '+'
+                console.log(currentOperator) 
+                break;
+            case 'subtract':
+                currentOperator = '-'
+                console.log(currentOperator) 
+                break;
+            case 'divide':
+                currentOperator = '/'
+                console.log(currentOperator) 
+                break;
+            case 'multiply':
+                currentOperator = '*'
+                console.log(currentOperator) 
+                break;
+            case 'exponent':
+                currentOperator = '**'
+                console.log(currentOperator) 
+                break;
+            case 'square':
+                currentOperator = 'unsure'
+                console.log(currentOperator) 
+                break;
+        }
+        secondaryScreen = document.querySelector('#secondary-screen')
+        secondaryScreen.textContent = currentOperator
+
+        
+    })
+});
+
+
 
