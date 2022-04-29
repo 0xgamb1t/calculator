@@ -1,9 +1,11 @@
 console.log("I'm Alive!")
 
-let firstNumber = '';
-let secondNumber;
+let mainNumber = '';
+let secondaryNumber = '';
+let currentOperator;
 
 const calculator = document.querySelector('.calculator')
+
 
 let calcNumbers = ['dot', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 let calcMiscButtons = ['reset', 'delete', 'equal']
@@ -18,7 +20,6 @@ function createDivs(divList, classesToAdd) {
 
         div.classList.add(...classesToAdd)
     })
-
 }
 
 
@@ -27,8 +28,10 @@ function createScreen() {
     const screenElement = document.querySelectorAll('.screen')
     screenElement.forEach(element => {
         element.id = `${element.textContent}`
-        element.textContent = '0'
+        element.textContent = ''
     })
+
+    
 
 }
 createScreen();
@@ -41,13 +44,13 @@ function createNumbers() {
 
     numbersElement.forEach(element => {
         element.id = `n${element.textContent}`
+        if(element.id == 'ndot') {element.textContent = '.'} 
         element.addEventListener('click', () => {
             console.log(`you clicked ${element.id}`)
-            firstNumber += element.textContent 
-            console.log(firstNumber)
-            mainScreen.textContent = firstNumber
-            console.log(mainScreen)
+            mainNumber += element.textContent 
+            mainScreen.textContent = mainNumber
         })
+    
     })
 }
 
@@ -80,6 +83,43 @@ function createMiscButtons() {
 createMiscButtons();
 
 
-function resetCalculator (){
-    
-}
+// function operate(a, b) {
+//     a = ''
+//     b = ''
+
+//     const secondaryScreen = document.querySelector('#secondary-screen')
+
+
+//     const functions = document.querySelectorAll('.function')
+//     functions.forEach(element => {
+//         element.addEventListener('click', () => {
+//             console.log(element)
+//             if(element.id == 'equ') {
+//                 console.log('equals has been clicked syre')
+//                 console.log(mainNumber)
+//                 if(mainNumber !== '' && secondaryNumber !== ''){
+                    
+//                 }
+//             } else {
+//                 if(mainNumber !== '' && secondaryNumber !== '') {
+//                     currentOperator = element.textContent
+//                     console.log('there are two numbers')
+//                 } else if(mainNumber !== '') {
+//                     currentOperator = element.textContent
+//                     console.log(`function ${element.id} has been selected`)
+//                     console.log(currentOperator)
+//                     secondaryNumber = mainNumber
+//                     mainNumber = ''
+//                     secondaryScreen.textContent = secondaryNumber
+//                     console.log(secondaryScreen)
+//                 }
+//             }
+//         })
+//     });
+// }
+
+// operate();
+
+
+equalsBtn = document.querySelector('.equals')
+

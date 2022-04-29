@@ -1,10 +1,14 @@
-
+.container {
+    width: 1000px;
+    height: 1000px;
+}
 
 .calculator {
-    width: 500px;
-    hight: 800px;
+    max-width: 500px;
+    max-height: 800px;
     display: grid;
-
+    justify-content: center;
+ 
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(8, 1fr);
     grid-template-areas: 
@@ -25,6 +29,8 @@
 /* screens */
 .screen {
     background-color: slategrey;
+    text-align: right;
+
 }
 
 #main-screen {
@@ -61,6 +67,7 @@
     grid-area: ex;
 }
 
+
 /* misc buttons */
 .misc-button{
     background-color: rgb(195, 195, 195);
@@ -68,6 +75,7 @@
 
 #equal{
     grid-area: eq;
+    background-color: aqua;
 }
 #delete{
     grid-area: de;
