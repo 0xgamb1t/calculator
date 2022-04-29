@@ -119,10 +119,16 @@ createMiscButtons();
 // operate();
 
 
+secondaryScreen = document.querySelector('#secondary-screen')
+
+
 equalsBtn = document.querySelector('#equal')
 equalsBtn.addEventListener('click', () => {
-    output = `${mainNumber} ${currentOperator} ${secondaryNumber}`
-    console.log(output)
+    if(mainNumber && currentOperator && secondaryNumber){
+    }
+    secondaryScreen.textContent = `${mainNumber} ${currentOperator} ${secondaryNumber}`
+    // output = `${mainNumber} ${currentOperator} ${secondaryNumber}`
+    // console.log(output)
 })
 
 
@@ -157,8 +163,7 @@ functionBtns.forEach((element) => {
                 console.log(currentOperator) 
                 break;
         }
-        secondaryScreen = document.querySelector('#secondary-screen')
-        secondaryScreen.textContent = currentOperator
+        secondaryScreen.textContent = `${mainNumber} ${currentOperator} ${secondaryNumber}`
 
         
     })
