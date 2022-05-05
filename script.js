@@ -7,9 +7,9 @@ let currentOperator = '';
 const calculator = document.querySelector('.calculator')
 
 
-let calcNumbers = ['dot', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-let calcMiscButtons = ['reset', 'delete', 'equal']
-let calcFunctions = ['add', 'subtract', 'divide', 'multiply', 'square', 'exponent']
+let calcNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+let calcMiscButtons = ['reset', 'delete', 'equal', 'negative', 'period']
+let calcFunctions = ['add', 'subtract', 'divide', 'multiply', 'exponent']
 let calcScreens = ['main-screen', 'secondary-screen']
 
 function createDivs(divList, classesToAdd) {
@@ -17,11 +17,9 @@ function createDivs(divList, classesToAdd) {
         const div = document.createElement('div')
         calculator.append(div)
         div.textContent = element
-
         div.classList.add(...classesToAdd)
     })
 }
-
 
 function createScreen() {
     createDivs(calcScreens, ['screen'])
@@ -36,20 +34,6 @@ createScreen();
 
 function createNumbers() {
     createDivs(calcNumbers, ['button', 'number'])
-    const numbersElement = document.querySelectorAll('.number')
-    const mainScreen = document.querySelector('#main-screen')
-
-
-    numbersElement.forEach(element => {
-        element.id = `n${element.textContent}`
-        if(element.id == 'ndot') {element.textContent = '.'} 
-        element.addEventListener('click', () => {
-            console.log(`you clicked ${element.id}`)
-            mainNumber += element.textContent 
-            mainScreen.textContent = mainNumber
-        })
-    
-    })
 }
 
 createNumbers();
@@ -122,13 +106,17 @@ createMiscButtons();
 secondaryScreen = document.querySelector('#secondary-screen')
 
 
-equalsBtn = document.querySelector('#equal')
-equalsBtn.addEventListener('click', () => {
-    if(mainNumber && currentOperator && secondaryNumber){
-    }
-    secondaryScreen.textContent = `${mainNumber} ${currentOperator} ${secondaryNumber}`
-    // output = `${mainNumber} ${currentOperator} ${secondaryNumber}`
-    // console.log(output)
+const numbersElement = document.querySelectorAll('.number')
+const mainScreen = document.querySelector('#main-screen')
+
+numbersElement.forEach(element => {
+    element.id = `n${element.textContent}`
+    // if(element.id == 'ndot') {element.textContent = '.'} 
+    element.addEventListener('click', () => {
+        console.log(`you clicked ${element.id}`)
+        mainNumber += element.textContent 
+        mainScreen.textContent = mainNumber
+    })
 })
 
 
@@ -140,34 +128,101 @@ functionBtns.forEach((element) => {
         switch (idName) {
             case 'add':
                 currentOperator = '+'
-                console.log(currentOperator) 
                 break;
             case 'subtract':
                 currentOperator = '-'
-                console.log(currentOperator) 
                 break;
             case 'divide':
                 currentOperator = '/'
-                console.log(currentOperator) 
                 break;
             case 'multiply':
                 currentOperator = '*'
-                console.log(currentOperator) 
                 break;
             case 'exponent':
                 currentOperator = '**'
-                console.log(currentOperator) 
-                break;
-            case 'square':
-                currentOperator = 'unsure'
-                console.log(currentOperator) 
                 break;
         }
-        secondaryScreen.textContent = `${mainNumber} ${currentOperator} ${secondaryNumber}`
 
-        
+        if(mainNumber !== ''){
+            secondaryNumber = mainNumber
+            secondaryScreen.textContent = `${secondaryNumber} ${currentOperator}`
+            mainNumber = ''
+            mainScreen.textContent = '0'
+        } else {
+            secondaryScreen.textContent = `${secondaryNumber} ${currentOperator}`
+        }
     })
 });
 
+
+equalsBtn = document.querySelector('#equal')
+function equals() {
+    equalsBtn.addEventListener('click', () => {
+        if(mainNumber > 0 && currentOperator && secondaryNumber > 0){
+            console.log('all phases complete')
+            secondaryScreen.textContent = ` ${secondaryNumber} ${currentOperator} ${mainNumber} =`
+            operate();
+        // } else if(mainNumber ){
+            
+        } else {
+            secondaryScreen.textContent = mainNumber
+            mainScreen.textContent = ''
+        }
+        
+        secondaryNumber = ''
+
+        
+        // output = `${mainNumber} ${currentOperator} ${secondaryNumber}`
+        // console.log(output)
+    })
+}
+equals();
+
+function operate(a, b){
+    a = mainNumber
+    b = secondaryNumber
+    console.log(currentOperator)
+
+    if(currentOperator === '+'){
+        console.log('add')
+        mainScreen.textContent = parseInt(secondaryNumber) + parseInt(mainNumber)
+    } else if(currentOperator === '-'){
+        console.log('subtract')
+        mainScreen.textContent = parseInt(secondaryNumber) - parseInt(mainNumber)
+    } else if(currentOperator === '*'){
+        console.log('multiply')
+        mainScreen.textContent = parseInt(secondaryNumber) * parseInt(mainNumber)
+    } else if(currentOperator === '/'){
+        console.log('divide')
+        mainScreen.textContent = parseInt(secondaryNumber) / parseInt(mainNumber)
+    } else if(currentOperator === '**'){
+        console.log('exponent')
+        mainScreen.textContent = parseInt(secondaryNumber) ** parseInt(mainNumber)
+    }
+    mainNumber = mainScreen.textContent
+
+}
+
+resetBtn = document.querySelector('#reset')
+function resetCalc() {
+    resetBtn.addEventListener('click', () => {
+        mainNumber = ''
+        secondaryNumber = ''
+        currentOperator = ''
+
+        mainScreen.textContent = ''
+        secondaryScreen.textContent = ''
+    });
+}
+
+resetCalc();
+
+
+
+// if there is a number input and you click equals, nothing happens
+// if there is a number input and you click a function, the number gets saved >> ready for final number
+    //- if a second number is input and you click:
+        //equals : the first number | the operator | and the last number will appear on the secondary screen >> the output will appear on the main screen
+        //a function: the output will appear on the secondary screen with the new operator and the output will also appear in the main screen. one of the two values will then become '' and wait for another input...
 
 

@@ -1,29 +1,31 @@
 .container {
+    display: grid;
     width: 1000px;
     height: 1000px;
+    background-color: green;
 }
 
 .calculator {
     max-width: 500px;
     max-height: 800px;
     display: grid;
-    justify-content: center;
  
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas: 
-        ". . . ."
         "sc sc sc sc"
         "ms ms ms ms"
-        "re sq ex di"
+        "re ne ex di"
         "n7 n8 n9 mu"
         "n4 n5 n6 su"
         "n1 n2 n3 ad"
-        "ndot n0 de eq";
+        "pe n0 de eq";
 }
 
+
 .button {
-    height: 90px;
+    max-height: 200px;
+    max-width: 200px;
 }
 
 /* screens */
@@ -35,10 +37,12 @@
 
 #main-screen {
     grid-area: ms;
+    align-self: center;
 }
 #secondary-screen {
     grid-area: sc;
-    ;
+    max-height: 40px;
+    align-self: end;
 }
 
 
@@ -50,6 +54,7 @@
 
 #add{
     grid-area: ad;
+
 }
 #subtract{
     grid-area: su;
@@ -60,9 +65,6 @@
 #multiply{
     grid-area: mu;
 }
-#square{
-    grid-area: sq;
-}
 #exponent{
     grid-area: ex;
 }
@@ -70,7 +72,7 @@
 
 /* misc buttons */
 .misc-button{
-    background-color: rgb(195, 195, 195);
+    background-color: rgb(104, 103, 103);
 }
 
 #equal{
@@ -83,6 +85,13 @@
 #reset{
     grid-area: re;
 }
+#negative{
+    grid-area: ne;
+}
+#period {
+    grid-area: pe;
+    background-color: red;
+}
 
 
 /* numbers */
@@ -90,9 +99,7 @@
     background-color: red;
 }
 
-#ndot {
-    grid-area: ndot;
-}
+
 #n0 {
     grid-area: n0;
 }
